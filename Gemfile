@@ -33,6 +33,12 @@ gem "bootsnap", require: false
 # HIRB
 gem "hirb"
 
+# Faker
+gem "faker"
+
+# Pry
+gem "pry"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -41,12 +47,17 @@ gem "hirb"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "byebug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+
+  gem 'listen', '~> 3.3'
 end
 
 

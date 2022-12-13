@@ -81,7 +81,7 @@ test:
 #
 production:
   <<: *default
-  # database: new_recoup_production
-  # username: new_recoup
-  # password: <%= ENV["NEW_RECOUP_DATABASE_PASSWORD"] %>
+  database: new_recoup_production
+  username: new_recoup
+  password: <%= ENV["NEW_RECOUP_DATABASE_PASSWORD"] %>
   url: <%= ENV['DATABASE_URL'] %>
