@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   # route to test middleware/cookie configuration
-  # get '/hello', to: 'application#hello_world'
+  get '/hello', to: 'application#hello_world'
 
 
 end
