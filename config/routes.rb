@@ -7,5 +7,15 @@ Rails.application.routes.draw do
   # route to test middleware/cookie configuration
   get '/hello', to: 'application#hello_world'
 
+  #Route for Sessions/Login
+  post "/login", to: "sessions#create"
+
+  #Route for staying logged in
+  get "/me", to: "users#show"
+
+  #Route for logging out
+  delete "/logout", to: "sessions#destroy"
+
+
 
 end
