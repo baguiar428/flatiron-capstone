@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -17,12 +17,51 @@ function Signup() {
     const theme = createTheme();
     const navigate = useNavigate();
 
+    const [formData, setFormData] = useState({
+      first_name: '',
+      last_name: '',
+      username: '',
+      password: '',
+      confirmPassword: ''
+    })
+
     function goToLogin() {
         navigate('/login')
     }
 
-    function handleSubmit() {
+    function handleSubmit(e) {
+      e.preventDefault()
+      const signup = {
+        ...formData
+      }
+      if(formData.password === formData.confirmPassword){
+        fetch('/users',{
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(signup)
+        })
+        .then(res => {
+          if(res.ok){
+            res.json().then(user => {
+              sessionStorage.setItem('user_id', user.id)
+              console.log('Account Creation Successful')
+              navigate('/')
+            })
+          } else {
+            console.log('Account Creation Failed')
+          }
+        })
+      } else {
+        alert("Passwords do not match")
+      }
+      e.target.reset()
+    }
 
+    function handleChange(e) {
+      const {name, value} = e.target
+      setFormData({...formData, [name]: value})
     }
 
     return (
@@ -48,10 +87,12 @@ function Signup() {
                 <Grid item xs={12} sm={6}>
                   <TextField
                     autoComplete="given-name"
-                    name="firstName"
+                    name="first_name"
                     required
+                    value={formData.first_name}
+                    onChange={handleChange}
                     fullWidth
-                    id="firstName"
+                    id="first_name"
                     label="First Name"
                     autoFocus
                   />
@@ -60,9 +101,11 @@ function Signup() {
                   <TextField
                     required
                     fullWidth
-                    id="lastName"
+                    id="last_name"
                     label="Last Name"
-                    name="lastName"
+                    name="last_name"
+                    value={formData.last_name}
+                    onChange={handleChange}
                     autoComplete="family-name"
                   />
                 </Grid>
@@ -73,6 +116,8 @@ function Signup() {
                     id="username"
                     label="Username"
                     name="username"
+                    value={formData.username}
+                    onChange={handleChange}
                     autoComplete="username"
                   />
                 </Grid>
@@ -81,9 +126,24 @@ function Signup() {
                     required
                     fullWidth
                     name="password"
+                    value={formData.password}
+                    onChange={handleChange}
                     label="Password"
                     type="password"
                     id="password"
+                    autoComplete="new-password"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    label="Confirm Password"
+                    type="password"
+                    id="confirmPassword"
                     autoComplete="new-password"
                   />
                 </Grid>

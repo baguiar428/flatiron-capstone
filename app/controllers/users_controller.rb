@@ -6,6 +6,11 @@ class UsersController < ApplicationController
     render json: User.all, status: :ok
   end
 
+  def create
+    user = User.create!(user_params)
+    render json: user
+  end
+
   def show
       user = User.find_by(id: session[:user_id])
       if user
@@ -18,7 +23,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:first_name, last_name,:username, :password)
+    params.permit(:first_name, :last_name, :username, :password)
   end
 
 
