@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function Login() {
+function Login({setLoginStatus}) {
 
     const theme = createTheme();
     const navigate = useNavigate();

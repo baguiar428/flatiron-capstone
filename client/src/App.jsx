@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import './App.css';
 import { Route, Routes } from "react-router-dom"
 import Home from './components/Home';
@@ -6,11 +7,13 @@ import Signup from './components/Signup';
 
 function App() {
 
+  const [loginStatus, setLoginStatus] = useState(!!sessionStorage.getItem("user_id"))
+
     return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Home loginStatus={loginStatus} setLoginStatus={setLoginStatus} />} />
+        <Route path="/login" element={<Login setLoginStatus={setLoginStatus} />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>  
     </div>
