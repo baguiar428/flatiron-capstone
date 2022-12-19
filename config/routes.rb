@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   #Route for logging out
   delete "/logout", to: "sessions#destroy"
 
-
+  resources :users, only:[:index, :show, :create]
 
 end

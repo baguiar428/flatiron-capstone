@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -19,12 +19,45 @@ function Login() {
     const theme = createTheme();
     const navigate = useNavigate();
 
+    const [formData, setFormData] = useState({
+        username: '',
+        password: ''
+    })
+
     function goToSignup() {
         navigate('/signup')
     }
 
-    function handleSubmit() {
+    function handleChange(e) {
+        const { name, value } = e.target
+        setFormData({...formData, [name]: value})
+    }
 
+    function handleSubmit(e) {
+        e.preventDefault()
+        const login = {
+            ...formData
+        }
+        //console.log(`login: ${login}`)
+
+        fetch('login', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"               
+            },
+            body: JSON.stringify(login)
+        })
+            .then(res => {
+                if (res.ok) {
+                    res.json().then(user => {
+                        sessionStorage.setItem('user_id', user.id)
+                        console.log('Login Worked')
+                        navigate('/')
+                    })
+                } else {
+                    console.log('Login Failed')
+                }
+            })
     }
 
     return (
@@ -53,6 +86,8 @@ function Login() {
                             id="username"
                             label="Username"
                             name="username"
+                            value={formData.username}
+                            onChange={handleChange}
                             autoComplete="username"
                             autoFocus
                         />
@@ -61,6 +96,8 @@ function Login() {
                             required
                             fullWidth
                             name="password"
+                            value={formData.password}
+                            onChange={handleChange}
                             label="Password"
                             type="password"
                             id="password"

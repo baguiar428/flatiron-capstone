@@ -7,9 +7,16 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 #Destroy Section to clear out any existing data before seeding
+
+puts 'Destroying previous tables'
+
 User.destroy_all
+
+puts 'Started Seeding new tables'
 
 #User/Therapist Account Creations
 User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, username: 'Therapist1', password_digest: BCrypt::Password.create('PasswordTest1!'))
 User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, username: 'Therapist2', password_digest: BCrypt::Password.create('PasswordTest2!'))
-User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, username: 'Therapist1', password_digest: BCrypt::Password.create('PasswordTest3!'))
+User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, username: 'Therapist3', password_digest: BCrypt::Password.create('PasswordTest3!'))
+
+puts 'Done Seeding...'
