@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   #Route for Sessions/Login
   post "/login", to: "sessions#create"
 
+  #Route for Twilio
+  post "/text", to: "texts#create"
+
   #Route for staying logged in
   get "/me", to: "users#show"
 
@@ -17,5 +20,6 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   resources :users, only:[:index, :show, :create]
+
 
 end
