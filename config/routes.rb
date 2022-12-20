@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   #Route for Twilio
   post "/text", to: "texts#create"
 
+  #Route for Action Mailer
+  post "/email", to: "emails#create"
+
   #Route for staying logged in
   get "/me", to: "users#show"
 
