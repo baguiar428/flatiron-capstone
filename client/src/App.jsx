@@ -4,6 +4,8 @@ import { Route, Routes } from "react-router-dom"
 import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Calendar from './components/Calendar';
+import Dashboard from './components/Dashboard';
 
 function App() {
 
@@ -15,6 +17,8 @@ function App() {
         <Route path="/" element={<Home loginStatus={loginStatus} setLoginStatus={setLoginStatus} />} />
         <Route path="/login" element={<Login setLoginStatus={setLoginStatus} />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/calendar" element={<Calendar/>} />
+        <Route path="/dashboard" element={<Dashboard/>} />
       </Routes>  
     </div>
   );

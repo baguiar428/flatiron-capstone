@@ -19,6 +19,10 @@ function NavBar({loginStatus, setLoginStatus}) {
         navigate('/login');
     }
 
+    function schedule() {
+        navigate('/calendar')
+    }
+
     function handleLogout() {
         fetch('/logout', {
             method: 'DELETE'
@@ -29,8 +33,10 @@ function NavBar({loginStatus, setLoginStatus}) {
         navigate('/')
     }
 
-    const isLoggedIn = sessionStorage.getItem("user_id") ? <Button variant="contained" onClick={handleLogout}>Logout</Button>
-        : <Button variant="contained" onClick={login}>Login</Button>
+    const isLoggedIn = loginStatus ? <Button variant="contained" onClick={handleLogout}>Logout</Button>
+        : <> <Button variant="contained" onClick={schedule}>Book an Appointment</Button>
+        <Button sx={{ ml: 2 }} variant="contained" onClick={login}>Login</Button></>
+
     return (
         <Box
             m={1}
