@@ -7,35 +7,51 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 import EmailIcon from '@mui/icons-material/Email'
 import SmsIcon from '@mui/icons-material/Sms'
+import AddContactIcon from '@mui/icons-material/PersonAdd'
 
 export const mainListItems = (
     <React.Fragment>
-      <ListItemButton>
-        <ListItemIcon>
-            <DashboardIcon />
-        </ListItemIcon>
+        <ListItemButton>
+            <ListItemIcon>
+                <DashboardIcon />
+            </ListItemIcon>
             <ListItemText primary="Dashboard" />
-      </ListItemButton>  
+        </ListItemButton>
 
-      <ListItemButton>
-        <ListItemIcon>
-            <PeopleIcon />
-        </ListItemIcon>
+        <ListItemButton>
+            <ListItemIcon>
+                <PeopleIcon />
+            </ListItemIcon>
             <ListItemText primary="Clients" />
-      </ListItemButton>
+        </ListItemButton>
+    </React.Fragment>
+);
 
-      <ListItemButton>
-        <ListItemIcon>
-            <EmailIcon />
-        </ListItemIcon>
+export const secondaryListItems = (
+    <React.Fragment>
+        <ListSubheader component="div" inset>
+            Tasks
+        </ListSubheader>
+
+        <ListItemButton>
+            <ListItemIcon>
+                <AddContactIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add Client" />
+        </ListItemButton>
+
+        <ListItemButton>
+            <ListItemIcon>
+                <EmailIcon />
+            </ListItemIcon>
             <ListItemText primary="Email Promotions" />
-      </ListItemButton>
+        </ListItemButton>
 
-      <ListItemButton>
-        <ListItemIcon>
-            <SmsIcon />
-        </ListItemIcon>
+        <ListItemButton>
+            <ListItemIcon>
+                <SmsIcon />
+            </ListItemIcon>
             <ListItemText primary="SMS Promotions" />
-      </ListItemButton>
+        </ListItemButton>
     </React.Fragment>
 );

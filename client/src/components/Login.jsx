@@ -52,7 +52,7 @@ function Login({setLoginStatus}) {
                     res.json().then(user => {
                         sessionStorage.setItem('user_id', user.id)
                         console.log('Login Worked')
-                        navigate('/')
+                        navigate('/dashboard')
                     })
                 } else {
                     console.log('Login Failed')
