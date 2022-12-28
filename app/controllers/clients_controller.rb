@@ -30,9 +30,9 @@ class ClientsController < ApplicationController
 
     private
 
-    def find_client
-        @client = Client.find(params[:id])
-    end
+    # def find_client
+    #     @client = Client.find(params[:id])
+    # end
     
     def client_params
         params.permit(:first_name, :last_name, :phone_number, :email)
