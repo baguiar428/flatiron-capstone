@@ -1,20 +1,20 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { Box } from "@mui/material";
 
-function NavBar({loginStatus, setLoginStatus}) {
+function NavBar({ loginStatus, setLoginStatus }) {
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(sessionStorage.getItem("user_id")) {
+        if (sessionStorage.getItem("user_id")) {
             setLoginStatus(sessionStorage.getItem("user_id"))
         } else {
             setLoginStatus(!!sessionStorage.getItem("user_id"))
         }
-    }, [loginStatus]) 
-    
+    }, [loginStatus])
+
     function login() {
         navigate('/login');
     }
@@ -35,7 +35,7 @@ function NavBar({loginStatus, setLoginStatus}) {
 
     const isLoggedIn = loginStatus ? <Button variant="contained" onClick={handleLogout}>Logout</Button>
         : <> <Button variant="contained" onClick={schedule}>Book an Appointment</Button>
-        <Button sx={{ ml: 2 }} variant="contained" onClick={login}>Login</Button></>
+            <Button sx={{ ml: 2 }} variant="contained" onClick={login}>Login</Button></>
 
     return (
         <Box

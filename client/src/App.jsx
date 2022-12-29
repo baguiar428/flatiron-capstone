@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Route, Routes } from "react-router-dom"
 import Home from './components/Home';
@@ -23,18 +23,18 @@ function App() {
 
   //console.log(clients) //Works
 
-    return (
+  return (
     <div>
       <Routes>
         <Route path="/" element={<Home loginStatus={loginStatus} setLoginStatus={setLoginStatus} />} />
         <Route path="/login" element={<Login setLoginStatus={setLoginStatus} />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/calendar" element={<Calendar/>} />
-        <Route path="/dashboard" element={<Dashboard/>} />
-        <Route path="/create-client" element={<CreateClient clients={clients} setClients={setClients}/>} />
-        <Route path="/edit-client" element={<EditClient setClients={setClients}/>} />
-        <Route path="/clients" element={<ClientContainer clients={clients} setClients={setClients}/>} />
-      </Routes>  
+        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/create-client" element={<CreateClient clients={clients} setClients={setClients} />} />
+        <Route path="/edit-client" element={<EditClient setClients={setClients} />} />
+        <Route path="/clients" element={<ClientContainer clients={clients} setClients={setClients} />} />
+      </Routes>
     </div>
   );
 }

@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function Login({setLoginStatus}) {
+function Login({ setLoginStatus }) {
 
     const theme = createTheme();
     const navigate = useNavigate();
@@ -30,7 +30,7 @@ function Login({setLoginStatus}) {
 
     function handleChange(e) {
         const { name, value } = e.target
-        setFormData({...formData, [name]: value})
+        setFormData({ ...formData, [name]: value })
     }
 
     function handleSubmit(e) {
@@ -43,7 +43,7 @@ function Login({setLoginStatus}) {
         fetch('login', {
             method: 'POST',
             headers: {
-                "Content-Type": "application/json"               
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(login)
         })

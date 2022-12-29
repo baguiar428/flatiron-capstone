@@ -6,9 +6,9 @@ import CardContent from '@mui/material/CardContent';
 import EditBtn from "./EditBtn";
 import DeleteBtn from "./DeleteBtn";
 
-function ClientCard({client, setClients}) {
+function ClientCard({ client, setClients }) {
 
-    const {id, first_name, last_name, email, phone_number} = client
+    const { id, first_name, last_name, email, phone_number } = client
 
     // console.log(`Test ${first_name} ${last_name} ${email} ${phone_number}`) //Works
 
@@ -30,6 +30,7 @@ function ClientCard({client, setClients}) {
                 <Typography>
                     Email: {email}
                 </Typography>
+                {editBtn}
                 {deleteBtn}
             </CardContent>
         </React.Fragment>
@@ -37,7 +38,7 @@ function ClientCard({client, setClients}) {
 
     return (
         <Box>
-        <Card variant="outlined">{card}</Card>
+            <Card variant="outlined">{card}</Card>
         </Box>
     )
 }

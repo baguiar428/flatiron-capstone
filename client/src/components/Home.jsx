@@ -3,11 +3,11 @@ import NavBar from "./NavBar";
 import { Image } from 'mui-image';
 import recoupLogo from '../assets/images/new_recoup_logo.png'
 
-function Home({loginStatus, setLoginStatus}) {
+function Home({ loginStatus, setLoginStatus }) {
     return (
         <>
-        <NavBar loginStatus={loginStatus} setLoginStatus={setLoginStatus}/>
-        <Image src={recoupLogo} height="90vh"/>
+            <NavBar loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
+            <Image src={recoupLogo} height="90vh" />
         </>
     )
 }
