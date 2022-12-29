@@ -1,10 +1,10 @@
 import React from "react";
 import ClientCard from "./ClientCard";
 
-function ClientContainer({clients}) {
+function ClientContainer({clients, setClients}) {
 
     const clientCard = clients.map(client =>
-        <ClientCard key={client.id} client={client} />)
+        <ClientCard key={client.id} client={client} setClients={setClients}/>)
 
     return (
         <>

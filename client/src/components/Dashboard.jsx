@@ -90,6 +90,10 @@ function DashboardContent() {
   function clients() {
     navigate('/clients')
   }
+
+  function addClient() {
+    navigate('/create-client')
+  }
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
@@ -164,7 +168,7 @@ function DashboardContent() {
                 Tasks
               </ListSubheader>
 
-              <ListItemButton>
+              <ListItemButton onClick={addClient}>
                 <ListItemIcon>
                   <AddContactIcon />
                 </ListItemIcon>

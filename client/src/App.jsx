@@ -8,7 +8,7 @@ import Calendar from './components/Calendar';
 import Dashboard from './components/Dashboard';
 import CreateClient from './components/CreateClient';
 import ClientContainer from './components/ClientContainer';
-import ClientCard from './components/ClientCard';
+import EditClient from './components/EditClient';
 
 function App() {
 
@@ -21,7 +21,7 @@ function App() {
       .then(setClients);
   }, []);
 
-  console.log(clients) //Works
+  //console.log(clients) //Works
 
     return (
     <div>
@@ -31,8 +31,9 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/calendar" element={<Calendar/>} />
         <Route path="/dashboard" element={<Dashboard/>} />
-        <Route path="/create-client" element={<CreateClient/>} />
-        <Route path="/clients" element={<ClientContainer clients={clients}/>} />
+        <Route path="/create-client" element={<CreateClient clients={clients} setClients={setClients}/>} />
+        <Route path="/edit-client" element={<EditClient setClients={setClients}/>} />
+        <Route path="/clients" element={<ClientContainer clients={clients} setClients={setClients}/>} />
       </Routes>  
     </div>
   );

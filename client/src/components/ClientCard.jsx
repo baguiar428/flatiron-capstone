@@ -3,12 +3,17 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
+import EditBtn from "./EditBtn";
+import DeleteBtn from "./DeleteBtn";
 
-function ClientCard({client}) {
+function ClientCard({client, setClients}) {
 
     const {id, first_name, last_name, email, phone_number} = client
 
     // console.log(`Test ${first_name} ${last_name} ${email} ${phone_number}`) //Works
+
+    let editBtn = <EditBtn client={client} setClients={setClients} />
+    let deleteBtn = <DeleteBtn client={client} setClients={setClients} />
 
     const card = (
         <React.Fragment>
@@ -25,6 +30,7 @@ function ClientCard({client}) {
                 <Typography>
                     Email: {email}
                 </Typography>
+                {deleteBtn}
             </CardContent>
         </React.Fragment>
     );
