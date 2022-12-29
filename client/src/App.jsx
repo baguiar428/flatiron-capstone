@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import { Route, Routes } from "react-router-dom"
 import Home from './components/Home';
@@ -6,10 +6,22 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Calendar from './components/Calendar';
 import Dashboard from './components/Dashboard';
+import CreateClient from './components/CreateClient';
+import ClientContainer from './components/ClientContainer';
+import ClientCard from './components/ClientCard';
 
 function App() {
 
   const [loginStatus, setLoginStatus] = useState(!!sessionStorage.getItem("user_id"))
+  const [clients, setClients] = useState([]);
+
+  useEffect(() => {
+    fetch('/clients')
+      .then(res => res.json())
+      .then(setClients);
+  }, []);
+
+  console.log(clients) //Works
 
     return (
     <div>
@@ -19,6 +31,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/calendar" element={<Calendar/>} />
         <Route path="/dashboard" element={<Dashboard/>} />
+        <Route path="/create-client" element={<CreateClient/>} />
+        <Route path="/clients" element={<ClientContainer clients={clients}/>} />
       </Routes>  
     </div>
   );
