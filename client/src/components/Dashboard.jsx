@@ -95,6 +95,11 @@ function DashboardContent({ loginStatus, setLoginStatus }) {
   function addClient() {
     navigate('/create-client')
   }
+
+  function sendSmsForm() {
+    navigate('/send-sms')
+  }
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
@@ -184,7 +189,7 @@ function DashboardContent({ loginStatus, setLoginStatus }) {
                 <ListItemText primary="Email Promotions" />
               </ListItemButton>
 
-              <ListItemButton>
+              <ListItemButton onClick={sendSmsForm}>
                 <ListItemIcon>
                   <SmsIcon />
                 </ListItemIcon>

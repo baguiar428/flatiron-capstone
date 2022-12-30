@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { AppBar, Toolbar, Typography, TextField, Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -14,9 +14,9 @@ function SendSms() {
     })
 
     function handleChange(e) {
-        const {name, value} = e.target 
-        setFormData({...formData, [name]: value})
-      }
+        const { name, value } = e.target
+        setFormData({ ...formData, [name]: value })
+    }
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -27,23 +27,23 @@ function SendSms() {
         await fetch('/text', {
             method: 'POST',
             headers: {
-             "Content-Type": "application/json"
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(smsText)
         })
-        .then(resp => {
-            if(resp.ok){
-                console.log('Text Sent')
-            }else{
-                resp.json().then(data => {
-                    console.log('Errors:', data)
-                })
-            }
-        })
+            .then(resp => {
+                if (resp.ok) {
+                    console.log('Text Sent')
+                } else {
+                    resp.json().then(data => {
+                        console.log('Errors:', data)
+                    })
+                }
+            })
 
         await fetch('/text')
-        .then(resp => resp.json())
-        .then(console.log('SMS Sent OK'))
+            .then(resp => resp.json())
+            .then(console.log('SMS Sent OK'))
     }
 
     function backToDashboard() {
