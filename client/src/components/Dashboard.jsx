@@ -79,7 +79,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
-function DashboardContent() {
+function DashboardContent({ loginStatus, setLoginStatus }) {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -126,7 +126,7 @@ function DashboardContent() {
             >
               Dashboard
             </Typography>
-            <AccountMenu/>
+            <AccountMenu loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
             {/* <IconButton color="inherit">
               <AccountIcon sx={{ fontSize: "40px" }} />
             </IconButton> */}
@@ -217,6 +217,6 @@ function DashboardContent() {
   );
 }
 
-export default function Dashboard() {
-  return <DashboardContent />;
+export default function Dashboard({loginStatus, setLoginStatus }) {
+  return <DashboardContent loginStatus={loginStatus} setLoginStatus={setLoginStatus} />;
 }

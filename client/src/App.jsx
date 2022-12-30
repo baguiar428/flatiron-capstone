@@ -30,7 +30,7 @@ function App() {
         <Route path="/login" element={<Login setLoginStatus={setLoginStatus} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/calendar" element={<Calendar />} />
-        <Route path="/dashboard" element={<Dashboard setLoginStatus={setLoginStatus} />} />
+        <Route path="/dashboard" element={<Dashboard loginStatus={loginStatus} setLoginStatus={setLoginStatus} />} />
         <Route path="/create-client" element={<CreateClient clients={clients} setClients={setClients} />} />
         <Route path="/edit-client" element={<EditClient setClients={setClients} />} />
         <Route path="/clients" element={<ClientContainer clients={clients} setClients={setClients} />} />
