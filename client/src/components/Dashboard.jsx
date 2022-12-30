@@ -28,6 +28,7 @@ import SmsIcon from '@mui/icons-material/Sms'
 import AddContactIcon from '@mui/icons-material/PersonAdd'
 // Needed unless I can abstract out navigation
 import { useNavigate } from "react-router-dom";
+import AccountMenu from "./AccountMenu";
 
 
 const drawerWidth = 240;
@@ -125,9 +126,10 @@ function DashboardContent() {
             >
               Dashboard
             </Typography>
-            <IconButton color="inherit">
+            <AccountMenu/>
+            {/* <IconButton color="inherit">
               <AccountIcon sx={{ fontSize: "40px" }} />
-            </IconButton>
+            </IconButton> */}
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>

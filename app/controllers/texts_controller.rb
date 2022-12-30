@@ -6,7 +6,7 @@ class TextsController < ApplicationController
 
 
     def create
-        binding.pry
+        # binding.pry
             TwilioClient.new.send_text(params[:text])
     end
 
