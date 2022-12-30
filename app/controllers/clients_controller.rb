@@ -3,7 +3,8 @@ class ClientsController < ApplicationController
     skip_before_action :authorized, only: [:index, :show, :create, :update, :destroy]
 
     def index
-        render json: Client.all, status: :ok
+        # render json: Client.all, status: :ok
+        render json: Client.all.sort_by(&:first_name), status: :ok
     end
 
     def show

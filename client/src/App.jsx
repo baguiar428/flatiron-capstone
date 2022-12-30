@@ -9,6 +9,7 @@ import Dashboard from './components/Dashboard';
 import CreateClient from './components/CreateClient';
 import ClientContainer from './components/ClientContainer';
 import EditClient from './components/EditClient';
+import SendSms from './components/SendSms';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/create-client" element={<CreateClient clients={clients} setClients={setClients} />} />
         <Route path="/edit-client" element={<EditClient setClients={setClients} />} />
         <Route path="/clients" element={<ClientContainer clients={clients} setClients={setClients} />} />
+        <Route path="/send-sms" element={<SendSms />} />
       </Routes>
     </div>
   );
