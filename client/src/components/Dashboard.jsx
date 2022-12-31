@@ -96,6 +96,10 @@ function DashboardContent({ loginStatus, setLoginStatus }) {
     navigate('/create-client')
   }
 
+  function sendEmailForm() {
+    navigate('/send-email')
+  }
+
   function sendSmsForm() {
     navigate('/send-sms')
   }
@@ -182,7 +186,7 @@ function DashboardContent({ loginStatus, setLoginStatus }) {
                 <ListItemText primary="Add Client" />
               </ListItemButton>
 
-              <ListItemButton>
+              <ListItemButton onClick={sendEmailForm}>
                 <ListItemIcon>
                   <EmailIcon />
                 </ListItemIcon>

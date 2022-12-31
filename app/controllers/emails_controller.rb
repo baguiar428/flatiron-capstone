@@ -7,6 +7,7 @@ class EmailsController < ApplicationController
     def create
         # binding.pry
         @user = params[:user]
-        UserMailer.with(user: @user[:name] , email: @user[:email]).test_email.deliver_now
+        UserMailer.with(user: @user[:name] , email: @user[:email] , subject: @user[:subject] , body: @user[:body]).email.deliver_now
     end
+    
 end
