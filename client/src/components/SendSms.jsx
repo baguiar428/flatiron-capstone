@@ -88,6 +88,7 @@ function SendSms() {
                         value={formData.body}
                         onChange={handleChange}
                         variant="outlined"
+                        multiline
                     />
                     <br />
                     <Button
