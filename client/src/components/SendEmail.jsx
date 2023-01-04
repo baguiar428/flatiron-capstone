@@ -6,10 +6,13 @@ import { useNavigate } from "react-router-dom";
 function SendEmail() {
 
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        body: ''
+        user:
+        {
+            name: '',
+            email: '',
+            subject: '',
+            body: ''
+        }
     })
 
     const navigate = useNavigate();
@@ -20,11 +23,41 @@ function SendEmail() {
 
     function handleChange(e) {
         const { name, value } = e.target 
-        setFormData({ ...FormData, [name]: value})
+        const newVal = { ...formData}
+        newVal.user[name]=value
+        console.log(newVal)
+        // setFormData({ ...formData, [name]: value})
+        setFormData(newVal)
+
+        console.log(name)
     }
 
-    function handleSubmit() {
+    async function handleSubmit(e) {
+        e.preventDefault()
+        const email = {
+            ...formData
+        }
+        console.log(formData)
 
+        await fetch('/email', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(email)
+        })
+        .then(resp => {
+            if (resp.ok) {
+                console.log('Email Sent')
+            } else {
+                resp.json().then(data => {
+                    console.log('Errors:', data)
+                })
+            }
+        })
+        // await fetch('/email')
+        //     .then(resp => resp.json())
+        //     .then(console.log('Email Sent Ok'))
     }
 
     return (
@@ -50,10 +83,10 @@ function SendEmail() {
                 <TextField
                     style={{ width: "200px", margin: "5px" }}
                     type="text"
-                    label="To:"
-                    // name="to"
-                    // value={formData.to}
-                    // onChange={handleChange}
+                    label="Name:"
+                    name="name"
+                    value={formData.user.name}
+                    onChange={handleChange}
                     variant="outlined"
                 />
                 <br />
@@ -61,9 +94,9 @@ function SendEmail() {
                     style={{ width: "200px", margin: "5px" }}
                     type="text"
                     label="Email:"
-                    // name="to"
-                    // value={formData.to}
-                    // onChange={handleChange}
+                    name="email"
+                    value={formData.user.email}
+                    onChange={handleChange}
                     variant="outlined"
                 />
                 <br />
@@ -71,9 +104,9 @@ function SendEmail() {
                     style={{ width: "200px", margin: "5px" }}
                     type="text"
                     label="Subject:"
-                    // name="to"
-                    // value={formData.to}
-                    // onChange={handleChange}
+                    name="subject"
+                    value={formData.user.subject}
+                    onChange={handleChange}
                     variant="outlined"
                 />
                 <br />
@@ -81,9 +114,9 @@ function SendEmail() {
                     style={{ width: "200px", margin: "5px" }}
                     type="text"
                     label="Message:"
-                    // name="body"
-                    // value={formData.body}
-                    // onChange={handleChange}
+                    name="body"
+                    value={formData.user.body}
+                    onChange={handleChange}
                     variant="outlined"
                     multiline
                 />

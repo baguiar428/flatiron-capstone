@@ -1,27 +1,44 @@
 import React, { useState } from "react";
 import { AppBar, Toolbar, Typography, TextField, Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import SmsClientCard from "./SmsClientCard";
+import SendSmsCard from "./SendSmsCard";
 
 
-function SendSms() {
+function SendSms({ clients }) {
 
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         from: '+18313185894',
-        to: '',
+        // to: '',
         body: ''
     })
 
     function handleChange(e) {
         const { name, value } = e.target
-        setFormData({ ...formData, [name]: value })
+        setFormData({ ...formData, [name]: value }) //OG Code
+        // formData.append(name, value)
+        // setFormData(formData)
     }
+
+    //Experimental
+    const [sendSmsList, setSendSmsList] = useState([]);
+
+    const smsList = sendSmsList.map(contact =>
+        <SendSmsCard contact={contact} />)
+
+    const smsClientCard = clients.map(client =>
+        <SmsClientCard key={client.id} client={client} sendSmsList={sendSmsList} setSendSmsList={setSendSmsList} formData={formData} setFormData={setFormData} />)
+    //End
 
     async function handleSubmit(e) {
         e.preventDefault()
         const smsText = {
-            ...formData
+            // for..of loop ? .entries()
+            ...formData, //OG Code
+            to: sendSmsList
+            // for (const entry of formData.entries())
         }
 
         await fetch('/text', {
@@ -30,6 +47,7 @@ function SendSms() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(smsText)
+            // body: JSON.stringify(formData)
         })
             .then(resp => {
                 if (resp.ok) {
@@ -40,15 +58,13 @@ function SendSms() {
                     })
                 }
             })
-
-        await fetch('/text')
-            .then(resp => resp.json())
-            .then(console.log('SMS Sent OK'))
     }
 
     function backToDashboard() {
         navigate('/dashboard')
     }
+
+
 
     return (
         <>
@@ -68,9 +84,16 @@ function SendSms() {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center'
+            }}>{smsList}
+            </Box>
+            <Box sx={{
+                marginTop: 4,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
             }}>
                 <form onSubmit={handleSubmit}>
-                    <TextField
+                    {/* <TextField
                         style={{ width: "200px", margin: "5px" }}
                         type="text"
                         label="To:"
@@ -79,7 +102,7 @@ function SendSms() {
                         onChange={handleChange}
                         variant="outlined"
                     />
-                    <br />
+                    <br /> */}
                     <TextField
                         style={{ width: "200px", margin: "5px" }}
                         type="text"
@@ -106,6 +129,11 @@ function SendSms() {
                         Send
                     </Button>
                 </form>
+            </Box>
+            <Box sx={{
+                marginTop: 2
+            }}>
+                {smsClientCard}
             </Box>
         </>
     )

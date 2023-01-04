@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+    #test
+    # has_many :texts
+    # has_many :clients, through: :texts
 
     has_secure_password
 
