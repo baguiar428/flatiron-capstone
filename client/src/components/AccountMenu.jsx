@@ -19,16 +19,17 @@ function AccountMenu({ loginStatus, setLoginStatus }) {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (sessionStorage.getItem("user_id")) {
-            setLoginStatus(sessionStorage.getItem("user_id"))
-        } else {
-            setLoginStatus(!!sessionStorage.getItem("user_id"))
-        }
-    }, [loginStatus])
+    // This seems unnecessary ..
+    // useEffect(() => {
+    //     if (sessionStorage.getItem("user_id")) {
+    //         setLoginStatus(sessionStorage.getItem("user_id"))
+    //     } else {
+    //         setLoginStatus(!!sessionStorage.getItem("user_id"))
+    //     }
+    // }, [loginStatus])
 
-    function handleLogout() {
-        fetch('/logout', {
+    async function handleLogout() {
+        await fetch('/logout', {
             method: 'DELETE'
         })
             .then(() => sessionStorage.clear())
@@ -96,12 +97,12 @@ function AccountMenu({ loginStatus, setLoginStatus }) {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem>
+                {/* <MenuItem>
                     <ListItemIcon>
                         <Settings fontSize="small" />
                     </ListItemIcon>
                     Settings
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem onClick={handleLogout}>
                     <ListItemIcon>
                         <Logout fontSize="small" />

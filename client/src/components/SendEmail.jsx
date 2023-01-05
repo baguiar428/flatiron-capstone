@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { AppBar, Toolbar, Typography, TextField, Box, Button } from "@mui/material";
+import { AppBar, Toolbar, Typography, TextField, Box, Button, ListItemButton, ListItemIcon } from "@mui/material";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from "react-router-dom";
 import SendEmailCard from "./SendEmailCard";
 import EmailClientCard from "./EmailClientCard";
@@ -80,6 +81,11 @@ function SendEmail({clients}) {
             alignItems: 'center'
         }}>
             <Toolbar>
+            <ListItemButton onClick={backToDashboard}>
+                        <ListItemIcon>
+                            <ArrowBackIcon sx={{ fontSize: "40px" }} />
+                        </ListItemIcon>
+                    </ListItemButton>
                 <Typography variant="h2">
                     Send Email Promotion
                 </Typography>

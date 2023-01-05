@@ -42,10 +42,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard loginStatus={loginStatus} setLoginStatus={setLoginStatus} />} />
         <Route path="/create-client" element={<CreateClient clients={clients} setClients={setClients} />} />
         <Route path="/edit-client" element={<EditClient setClients={setClients} />} />
-        {/* Route below is for clients container without search functionality */}
-        {/* <Route path="/clients" element={<ClientContainer clients={clients} setClients={setClients} />} /> */}
         <Route path="/clients" element={<ClientContainer clients={filteredClients} setClients={setClients} search={search} setSearch={setSearch}/>} />
-
         <Route path="/send-sms" element={<SendSms clients={clients}/>} />
         <Route path="/send-email" element={<SendEmail clients={clients}/>} />
       </Routes>
