@@ -93,16 +93,6 @@ function SendSms({ clients }) {
                 alignItems: 'center'
             }}>
                 <form onSubmit={handleSubmit}>
-                    {/* <TextField
-                        style={{ width: "200px", margin: "5px" }}
-                        type="text"
-                        label="To:"
-                        name="to"
-                        value={formData.to}
-                        onChange={handleChange}
-                        variant="outlined"
-                    />
-                    <br /> */}
                     <TextField
                         style={{ width: "200px", margin: "5px" }}
                         type="text"

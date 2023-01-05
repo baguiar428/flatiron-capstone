@@ -47,7 +47,7 @@ function App() {
         <Route path="/clients" element={<ClientContainer clients={filteredClients} setClients={setClients} search={search} setSearch={setSearch}/>} />
 
         <Route path="/send-sms" element={<SendSms clients={clients}/>} />
-        <Route path="/send-email" element={<SendEmail />} />
+        <Route path="/send-email" element={<SendEmail clients={clients}/>} />
       </Routes>
     </div>
   );

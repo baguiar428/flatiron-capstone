@@ -1,21 +1,32 @@
 import React, { useState } from "react";
 import { AppBar, Toolbar, Typography, TextField, Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import SendEmailCard from "./SendEmailCard";
+import EmailClientCard from "./EmailClientCard";
 
 
-function SendEmail() {
+function SendEmail({clients}) {
 
     const [formData, setFormData] = useState({
         user:
         {
-            name: '',
-            email: '',
+            // name: '',
+            // email: '',
             subject: '',
             body: ''
         }
     })
 
     const navigate = useNavigate();
+
+    //Experimental
+    const [sendEmailList, setSendEmailList] = useState([])
+    
+    const emailList = sendEmailList.map(contact =>
+       <SendEmailCard contact={contact}/>)
+    const emailClientCard = clients.map(client =>
+        <EmailClientCard key={client.id} client={client} sendEmailList={sendEmailList} setSendEmailList={setSendEmailList} formData={formData} setFormData={setFormData}/>)
+    //End
 
     function backToDashboard() {
         navigate('/dashboard')
@@ -35,7 +46,8 @@ function SendEmail() {
     async function handleSubmit(e) {
         e.preventDefault()
         const email = {
-            ...formData
+            ...formData,
+            email: sendEmailList
         }
         console.log(formData)
 
@@ -74,13 +86,20 @@ function SendEmail() {
             </Toolbar>
         </AppBar>
         <Box sx={{
-            marginTop: 14,
+                marginTop: 14,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
+            }}>{emailList}
+            </Box>
+        <Box sx={{
+            marginTop: 4,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center'
         }}>
             <form onSubmit={handleSubmit}>
-                <TextField
+                {/* <TextField
                     style={{ width: "200px", margin: "5px" }}
                     type="text"
                     label="Name:"
@@ -99,7 +118,7 @@ function SendEmail() {
                     onChange={handleChange}
                     variant="outlined"
                 />
-                <br />
+                <br /> */}
                 <TextField
                     style={{ width: "200px", margin: "5px" }}
                     type="text"
@@ -136,7 +155,13 @@ function SendEmail() {
                     Send
                 </Button>
             </form>
-        </Box></>
+        </Box>
+        <Box sx={{
+            marginTop: 2
+        }}>
+            {emailClientCard}
+        </Box>
+        </>
     )
 }
 

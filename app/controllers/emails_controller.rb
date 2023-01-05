@@ -5,9 +5,13 @@ class EmailsController < ApplicationController
     skip_before_action :authorized, only: [:create]
 
     def create
-        # binding.pry
+        params[:email].each do |email|
         @user = params[:user]
-        UserMailer.with(user: @user[:name] , email: @user[:email] , subject: @user[:subject] , body: @user[:body]).email.deliver_now
+        # binding.pry
+        # @user = params[:user]
+        UserMailer.with(user: @user[:name] , email: email , subject: @user[:subject] , body: @user[:body]).email.deliver_now
+        sleep 1
+        end
     end
     
 end
