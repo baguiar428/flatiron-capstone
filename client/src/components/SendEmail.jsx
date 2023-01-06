@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import SendEmailCard from "./SendEmailCard";
 import EmailClientCard from "./EmailClientCard";
 
-
 function SendEmail({ clients }) {
+
 
     const [formData, setFormData] = useState({
         user:
@@ -70,6 +70,7 @@ function SendEmail({ clients }) {
             })
         setSendEmailList([])
         setFormData(initialEmailFormState)
+        //Test
     }
 
     return (

@@ -1,5 +1,4 @@
 import React from "react";
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
@@ -7,7 +6,9 @@ import { Button } from "@mui/material";
 
 function EmailClientCard({client, sendEmailList, setSendEmailList, formData, setFormData}) {
 
-    const { id, first_name, last_name, email, phone_number } = client
+    //Took out id from destructure below. I think I would need it to be able to 
+    //implement a delete from sendEmailList. {id,}
+    const { first_name, last_name, email, phone_number } = client
 
     function addClientEmailList() {
         setSendEmailList([...sendEmailList, email])

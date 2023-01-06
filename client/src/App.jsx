@@ -16,13 +16,10 @@ function App() {
 
   const [loginStatus, setLoginStatus] = useState(!!sessionStorage.getItem("user_id"))
   const [clients, setClients] = useState([]);
-  // Test
   const [search, setSearch] = useState('')
 
   const filteredClients = clients.filter(client =>
     client.first_name.toLowerCase().includes(search.toLowerCase()))
-
-  // End test 
 
   useEffect(() => {
     fetch('/clients')
@@ -42,9 +39,9 @@ function App() {
         <Route path="/dashboard" element={<Dashboard loginStatus={loginStatus} setLoginStatus={setLoginStatus} />} />
         <Route path="/create-client" element={<CreateClient clients={clients} setClients={setClients} />} />
         <Route path="/edit-client" element={<EditClient setClients={setClients} />} />
-        <Route path="/clients" element={<ClientContainer clients={filteredClients} setClients={setClients} search={search} setSearch={setSearch}/>} />
-        <Route path="/send-sms" element={<SendSms clients={clients}/>} />
-        <Route path="/send-email" element={<SendEmail clients={clients}/>} />
+        <Route path="/clients" element={<ClientContainer clients={filteredClients} setClients={setClients} search={search} setSearch={setSearch} />} />
+        <Route path="/send-sms" element={<SendSms clients={clients} />} />
+        <Route path="/send-email" element={<SendEmail clients={clients} />} />
       </Routes>
     </div>
   );

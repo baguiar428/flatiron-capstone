@@ -7,7 +7,9 @@ import { Button } from "@mui/material";
 
 function SmsClientCard({ client, sendSmsList, setSendSmsList, formData, setFormData }) {
 
-    const { id, first_name, last_name, email, phone_number } = client
+    //Took out id from destructure below. I think I would need it to be able to 
+    //implement a delete from sendSmsList. {id,}
+    const { first_name, last_name, email, phone_number } = client
 
     function addClientSmsList() {
         setSendSmsList([...sendSmsList, phone_number])
