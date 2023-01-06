@@ -12,18 +12,19 @@ function SendSms({ clients }) {
 
     const [formData, setFormData] = useState({
         from: '+18313185894',
-        // to: '',
         body: ''
     })
 
-    function handleChange(e) {
-        const { name, value } = e.target
-        setFormData({ ...formData, [name]: value }) //OG Code
-        // formData.append(name, value)
-        // setFormData(formData)
+    const initialSmsFormState = {
+        from: '+18313185894',
+        body: ''
     }
 
-    //Experimental
+    function handleChange(e) {
+        const { name, value } = e.target
+        setFormData({ ...formData, [name]: value })
+    }
+
     const [sendSmsList, setSendSmsList] = useState([]);
 
     const smsList = sendSmsList.map(contact =>
@@ -31,15 +32,12 @@ function SendSms({ clients }) {
 
     const smsClientCard = clients.map(client =>
         <SmsClientCard key={client.id} client={client} sendSmsList={sendSmsList} setSendSmsList={setSendSmsList} formData={formData} setFormData={setFormData} />)
-    //End
 
     async function handleSubmit(e) {
         e.preventDefault()
         const smsText = {
-            // for..of loop ? .entries()
-            ...formData, //OG Code
+            ...formData,
             to: sendSmsList
-            // for (const entry of formData.entries())
         }
 
         await fetch('/text', {
@@ -48,7 +46,6 @@ function SendSms({ clients }) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(smsText)
-            // body: JSON.stringify(formData)
         })
             .then(resp => {
                 if (resp.ok) {
@@ -59,6 +56,8 @@ function SendSms({ clients }) {
                     })
                 }
             })
+        setSendSmsList([])
+        setFormData(initialSmsFormState)
     }
 
     function backToDashboard() {
@@ -75,7 +74,7 @@ function SendSms({ clients }) {
                 alignItems: 'center'
             }}>
                 <Toolbar>
-                <ListItemButton onClick={backToDashboard}>
+                    <ListItemButton onClick={backToDashboard}>
                         <ListItemIcon>
                             <ArrowBackIcon sx={{ fontSize: "40px" }} />
                         </ListItemIcon>

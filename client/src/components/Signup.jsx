@@ -47,7 +47,7 @@ function Signup() {
             res.json().then(user => {
               sessionStorage.setItem('user_id', user.id)
               console.log('Account Creation Successful')
-              navigate('/')
+              navigate('/dashboard')
             })
           } else {
             console.log('Account Creation Failed')
