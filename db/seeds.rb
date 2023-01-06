@@ -12,7 +12,7 @@ User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_nam
 
 puts 'Therapists Seeded'
 
-5.times do
+15.times do
 Client.create!(first_name:Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: '+16467047644', email: 'b.aguiar428@gmail.com')
 Client.create!(first_name:Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: '+12019256365', email: 'carlalifechangers@gmail.com')
 end
